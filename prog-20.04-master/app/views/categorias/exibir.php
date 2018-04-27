@@ -1,9 +1,17 @@
 
+<h1>Categoria</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Nome</th>
+        <th>Descricao</th>
+    </tr>
+    <tr>
+        <td><?=$categoria->getId()?></td>
+        <td><?=$categoria->getNome()?></td>
+        <td><?=$categoria->getDescricao()?></td>
+    </tr>
 
-        <h1> Detalhes Da Categoria - <?= $categoria->getNome(); ?> </h1>
-        <p>Descricao: <?= $categoria->getDescricao();?> </p>
-
-        <a href="categorias.php?acao=alterar&id=<?">editar a categoria</a>
-        <br>
-        <a href="categorias.php?acao=excluir">excluir a categoria</a>
-
+</table>
+<a href="categorias.php?acao=alterar&id=<?= $categoria->getId()?>">Update</a>
+<a href="categorias.php?acao=excluir&id=<?= $categoria->getId()?>">Delete</a>

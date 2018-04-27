@@ -1,10 +1,5 @@
 <?php
 
-/*controllers/categorias.php
-
-AÇÃO PRINCIPAL - LISTAR TODAS AS CATEGORIAS
-
- */
 
 require_once '../modelo/CRUDCategoria.php';
 
@@ -36,12 +31,12 @@ switch ($acao){
         break;
     case 'inserir':
 
-        if (!isset($_POST['gravar'])){
+        if (!isset($_POST['gravar'])){ //não digitou ainda, mostrar formulario
 
             include '../views/templates/cabecalho.php';
             include '../views/categorias/inserir.php';
             include '../views/templates/rodape.php';
-        }else{
+        }else{  //já digitou - gravar
             //gravar dados digitados no BD
             $nome= $_POST['nome'];
             $descricao = $_POST['descricao'];
@@ -55,43 +50,39 @@ switch ($acao){
 
     case 'alterar':
 
-        if (!isset($_POST['gravar'])){
-
+        if (!isset($_POST['gravar'])){ //nao nao digitou ainda - mostrar formulario
             $id = $_GET['id'];
-            $crud= new CRUDCategoria();
-            $categoria
+            $crud = new CRUDCategoria();
+            $categoria = $crud->getCategoria($id);
 
             include '../views/templates/cabecalho.php';
             include '../views/categorias/alterar.php';
             include '../views/templates/rodape.php';
-        }else{
+
+        }else{ // já digitou - gravar
+
             //gravar dados digitados no BD
+            $id = $_POST['id'];
             $nome= $_POST['nome'];
             $descricao = $_POST['descricao'];
-            $novaCat= new Categoria(null, $nome, $descricao);
+            $novaCat= new Categoria($id, $nome, $descricao);
             $crud= new CRUDCategoria();
-            $crud->insertCategoria($novaCat);
+            $crud->updateCategoria($novaCat);
             header('Location:categorias.php');
         }
         break;
 
 
 
+        case 'exibir':
+            $id = $_GET['id'];
+            $crud = new CRUDCategoria();
+            $categoria = $crud->getCategoria($id);
 
-
-
-
-
-
-    case 'exibir':
-        $id = $_GET['id'];
-        $crud = new CRUDCategoria();
-        $categoria = $crud->getCategoria($id);
-
-        include '../views/templates/cabecalho.php';
-        include '../views/categorias/exibir.php';
-        include '../views/templates/rodape.php';
-        break;
+            include '../views/templates/cabecalho.php';
+            include '../views/categorias/exibir.php';
+            include '../views/templates/rodape.php';
+            break;
 
     default: //CASO NÃO SEJA NENHUMA DOS ANTERIORES
         echo 'Ação inválida';

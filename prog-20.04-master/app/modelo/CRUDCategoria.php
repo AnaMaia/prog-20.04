@@ -48,13 +48,13 @@ class CRUDCategoria
             return $e -> getMessage();
         }
 
-
-
     }
 
     public function updateCategoria (Categoria $categoria){
+        $this-> conexao = Conexao::getConexao();
+
         //recebe um inteiro e apaga o registro correspondente no BD
-        $sql = "UPDATE categoria set Nome_Categoria = 'MOVEIS', descricao_categoria['MOVEIS']   where id_categoria = $categoria->getCategoria  ";
+        $sql = "UPDATE categoria set Nome_Categoria = '".$categoria->getNome()."', descricao_categoria='".$categoria->getDescricao()."'   where id_categoria = ".$categoria->getId() ;
         try{
             $this -> conexao -> exec($sql);
         }catch (PDOException $e ){
