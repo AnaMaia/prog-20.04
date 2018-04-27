@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 require_once "Conexao.php";
 require_once "Categoria.php";

@@ -11,9 +11,9 @@
  *
  * var_dump();
  */
-require "../modelo/Produtinho.php";
+require "../modelo/Produto.php";
 
-$choco = new Produtinho();
+$choco = new Produto();
 $choco -> setId(24);
 $choco ->setNome = "Chocolateeeee";
 $choco ->setDescricao('É a melhor coisa quando esta na tpm!!! Deveria estar incluso nas 7 maravilhas do mundo!!!!!!!!');
@@ -21,5 +21,5 @@ $choco ->setPreco(4.00);
 $choco ->setIdCategoria(1);
 var_dump($choco);
 
-$coxinha = new Produtinho(05, "Coxinha", "É de flango","fotinho", 2.00, 1);
+$coxinha = new Produto(05, "Coxinha", "É de flango","fotinho", 2.00, 1);
 var_dump($coxinha);
